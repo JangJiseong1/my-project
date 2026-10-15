@@ -1,0 +1,37 @@
+/* 전체 선택자 및 박스사이징 설정 */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Malgun Gothic', sans-serif;
+    margin: 40px;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+}
+
+/* 클래스 선택자 및 박스 모델 적용 */
+.box {
+    width: 600px;
+    height: 200px;
+    padding: 30px;          /* 안쪽 여백 */
+    border: 3px solid #3498db; /* 테두리 */
+    margin: 20px auto;      /* 바깥쪽 여백 및 중앙 정렬 */
+    background-color: #ffffff;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2980b9;
+}
+
+p {
+    font-size: 16px;
+    text-align: left;
+    color: #555555;
+}
