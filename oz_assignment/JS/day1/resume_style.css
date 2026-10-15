@@ -1,0 +1,23 @@
+/* 전체 페이지 기본 설정 */
+body {
+    font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; /* 가독성 좋은 폰트 지정 */
+    line-height: 1.6;
+    color: #333333;
+    max-width: 800px; /* 이력서가 너무 퍼지지 않도록 최대 너비 지정 */
+    margin: 40px auto; /* 위아래 여백을 주고 가운데 정렬 */
+    padding: 0 20px;
+    background-color: #fdfdfd;
+}
+
+/* 큰 제목 (이름 등) 스타일 */
+h1 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+/* 섹션 제목 스타일 */
+h2 {
+    color: #2980b9;
+    margin-top: 30px;
+}
