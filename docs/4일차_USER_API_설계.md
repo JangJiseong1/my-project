@@ -37,9 +37,9 @@
 ## 3. 권한 체계 (Role)
 * **PENDING (대기자)**: 마이페이지 외 모든 서비스 접근 불가
 
-**STAFF (스태프)**: 내부 직원, 흉부 X-ray 관련 모든 읽기/쓰기/수정 작업 가능
+* **STAFF (스태프)**: 내부 직원, 흉부 X-ray 관련 모든 읽기/쓰기/수정 작업 가능
 
-**ADMIN (어드민)**: 시스템 관리자, 모든 항목에 대한 데이터 액세스 및 회원 관리 가능
+* **ADMIN (어드민)**: 시스템 관리자, 모든 항목에 대한 데이터 액세스 및 회원 관리 가능
 
 Domain,Method,Endpoint,Description,Permission
 * Auth,POST,/api/v1/auth/signup,회원가입,Public
