@@ -26,7 +26,7 @@
     "data": { ... }
   }
 
-  에러 응답 구조:
+ * **에러 응답 구조**:
   {
   "success": false,
   "error": {
@@ -34,32 +34,32 @@
     "message": "상세 에러 메시지"
   }
 
-3. 권한 체계 (Role)
-PENDING (대기자): 마이페이지 외 모든 서비스 접근 불가
+## 3. 권한 체계 (Role)
+* **PENDING (대기자)**: 마이페이지 외 모든 서비스 접근 불가
 
-STAFF (스태프): 내부 직원, 흉부 X-ray 관련 모든 읽기/쓰기/수정 작업 가능
+**STAFF (스태프)**: 내부 직원, 흉부 X-ray 관련 모든 읽기/쓰기/수정 작업 가능
 
-ADMIN (어드민): 시스템 관리자, 모든 항목에 대한 데이터 액세스 및 회원 관리 가능
+**ADMIN (어드민)**: 시스템 관리자, 모든 항목에 대한 데이터 액세스 및 회원 관리 가능
 
 Domain,Method,Endpoint,Description,Permission
-Auth,POST,/api/v1/auth/signup,회원가입,Public
-Auth,POST,/api/v1/auth/login,로그인 및 토큰 발급,Public
-Auth,POST,/api/v1/auth/logout,로그아웃 (토큰/쿠키 만료),Authenticated
-Auth,POST,/api/v1/auth/refresh,Access Token 재발급,Public (Refresh Token)
-User,GET,/api/v1/users/me,마이페이지 본인 정보 조회,Authenticated
-User,PATCH,/api/v1/users/me,회원 정보 수정 (Partial),Authenticated
-User,PATCH,/api/v1/users/me/password,비밀번호 변경,Authenticated
-User,DELETE,/api/v1/users/me,회원 탈퇴 (Hard Delete),Authenticated
-Admin,GET,/api/v1/admin/users,전체 회원 목록 조회 (검색/필터),ADMIN
-Admin,PATCH,/api/v1/admin/users/{user_id}/role,회원 권한 변경,ADMIN
+* Auth,POST,/api/v1/auth/signup,회원가입,Public
+* Auth,POST,/api/v1/auth/login,로그인 및 토큰 발급,Public
+* Auth,POST,/api/v1/auth/logout,로그아웃 (토큰/쿠키 만료),Authenticated
+* Auth,POST,/api/v1/auth/refresh,Access Token 재발급,Public (Refresh Token)
+* User,GET,/api/v1/users/me,마이페이지 본인 정보 조회,Authenticated
+* User,PATCH,/api/v1/users/me,회원 정보 수정 (Partial),Authenticated
+* User,PATCH,/api/v1/users/me/password,비밀번호 변경,Authenticated
+* User,DELETE,/api/v1/users/me,회원 탈퇴 (Hard Delete),Authenticated
+* Admin,GET,/api/v1/admin/users,전체 회원 목록 조회 (검색/필터),ADMIN
+* Admin,PATCH,/api/v1/admin/users/{user_id}/role,회원 권한 변경,ADMIN
 
-5. API 상세 명세
-5.1 회원가입 (REQ-USER-001)
-Endpoint: POST /api/v1/auth/signup
+## 5. API 상세 명세
+# 5.1 회원가입 (REQ-USER-001)
+* **Endpoint**: POST /api/v1/auth/signup
 
-Access: Public
+* **Access**: Public
 
-Request Body:
+* **Request Body**:
 {
   "email": "user@hospital.com",
   "password": "Password123!",
@@ -69,7 +69,7 @@ Request Body:
   "phone_number": "010-1234-5678"
 }
 
-Response (201 Created):
+* **Response (201 Created)**:
 {
   "success": true,
   "message": "회원가입이 성공적으로 완료되었습니다.",
@@ -82,23 +82,23 @@ Response (201 Created):
   }
 }
 
-5.2 로그인 (REQ-USER-002, NFR-USER-001)
-Endpoint: POST /api/v1/auth/login
+## 5.2 로그인 (REQ-USER-002, NFR-USER-001)
+* **Endpoint**: POST /api/v1/auth/login
 
-Access: Public
+* **Access**: Public
 
-Request Body:
+* **Request Body**:
 {
   "email": "user@hospital.com",
   "password": "Password123!"
 }
 
 
-Response Header:
+* **Response Header**:
 
-Set-Cookie: refresh_token=<JWT_REFRESH_TOKEN>; HttpOnly; Secure; SameSite=Strict; Max-Age=604800; Path=/
+* **Set-Cookie**: refresh_token=<JWT_REFRESH_TOKEN>; HttpOnly; Secure; SameSite=Strict; Max-Age=604800; Path=/
 
-Response Body (200 OK):
+* **Response Body (200 OK)**:
 {
   "success": true,
   "message": "로그인 성공",
@@ -109,27 +109,27 @@ Response Body (200 OK):
   }
 }
 
-5.3 로그아웃 (REQ-USER-003)
-Endpoint: POST /api/v1/auth/logout
+## 5.3 로그아웃 (REQ-USER-003)
+* **Endpoint**: POST /api/v1/auth/logout
 
-Access: Authenticated
+* **Access**: Authenticated
 
-Response Header:
+* **Response Header**:
 
-Set-Cookie: refresh_token=; HttpOnly; Max-Age=0; Path=/
+* Set-Cookie: refresh_token=; HttpOnly; Max-Age=0; Path=/
 
-Response Body (200 OK):
+* **Response Body (200 OK)**:
 {
   "success": true,
   "message": "로그아웃 되었습니다."
 }
 
-5.4 토큰 재발급 (NFR-USER-001)
-Endpoint: POST /api/v1/auth/refresh
+## 5.4 토큰 재발급 (NFR-USER-001)
+* **Endpoint**: POST /api/v1/auth/refresh
 
-Access: Public (Cookie 내 refresh_token 전송)
+* **Access**: Public (Cookie 내 refresh_token 전송)
 
-Response Body (200 OK):
+* **Response Body (200 OK)**:
 {
   "success": true,
   "message": "Access Token이 재발급되었습니다.",
@@ -140,12 +140,12 @@ Response Body (200 OK):
   }
 }
 
-5.5 마이페이지 조회 (REQ-USER-006)
-Endpoint: GET /api/v1/users/me
+## 5.5 마이페이지 조회 (REQ-USER-006)
+* **Endpoint**: GET /api/v1/users/me
 
-Access: Authenticated
+* **Access**: Authenticated
 
-Response Body (200 OK):
+* **Response Body (200 OK)**:
 {
   "success": true,
   "data": {
@@ -159,20 +159,20 @@ Response Body (200 OK):
   }
 }
 
-5.6 회원 정보 수정 (REQ-USER-007)
-Endpoint: PATCH /api/v1/users/me
+## 5.6 회원 정보 수정 (REQ-USER-007)
+* **Endpoint**: PATCH /api/v1/users/me
 
-Access: Authenticated
+* **Access**: Authenticated
 
-Description: 부서 및 휴대폰 번호에 대한 선택적(Partial) 수정
+* **Description**: 부서 및 휴대폰 번호에 대한 선택적(Partial) 수정
 
-Request Body:
+* **Request Body**:
 {
   "department": "RESEARCH",
   "phone_number": "010-9876-5432"
 }
 
-Response Body (200 OK):
+* **Response Body (200 OK)**:
 {
   "success": true,
   "message": "회원 정보가 수정되었습니다.",
@@ -183,52 +183,52 @@ Response Body (200 OK):
   }
 }
 
-5.7 비밀번호 변경 (REQ-USER-008)
-Endpoint: PATCH /api/v1/users/me/password
+## 5.7 비밀번호 변경 (REQ-USER-008)
+* **Endpoint**: PATCH /api/v1/users/me/password
 
-Access: Authenticated
+* **Access**: Authenticated
 
-Request Body:
+* **Request Body**:
 {
   "current_password": "Password123!",
   "new_password": "NewPassword456!"
 }
 
-Response Body (200 OK):
+* **Response Body (200 OK)**:
 {
   "success": true,
   "message": "비밀번호가 성공적으로 변경되었습니다."
 }
 
-5.8 회원 탈퇴 (REQ-USER-009)
-Endpoint: DELETE /api/v1/users/me
+## 5.8 회원 탈퇴 (REQ-USER-009)
+* **Endpoint**: DELETE /api/v1/users/me
 
-Access: Authenticated
+* **Access**: Authenticated
 
-Description: DB에서 회원 관련 모든 정보를 즉시 삭제 (Hard Delete)
+* **Description**: DB에서 회원 관련 모든 정보를 즉시 삭제 (Hard Delete)
 
-Response Body (200 OK):
+* **Response Body (200 OK)**:
 {
   "success": true,
   "message": "회원 탈퇴가 완료되어 모든 정보가 삭제되었습니다."
 }
 
-5.9 회원 목록 조회 (REQ-USER-004)
-Endpoint: GET /api/v1/admin/users
+## 5.9 회원 목록 조회 (REQ-USER-004)
+* **Endpoint**: GET /api/v1/admin/users
 
-Access: ADMIN
+* **Access**: ADMIN
 
-Query Parameters:
+* **Query Parameters**:
 
-search: 이메일 또는 이름 검색어 (Optional)
+* **search**: 이메일 또는 이름 검색어 (Optional)
 
-department: 부서 필터 (RESEARCH, MEDICAL, DEVELOPMENT) (Optional)
+* **department**: 부서 필터 (RESEARCH, MEDICAL, DEVELOPMENT) (Optional)
 
-page: 페이지 번호 (Default: 1)
+* **page**: 페이지 번호 (Default: 1)
 
-size: 페이지당 결과 수 (Default: 10)
+* **size**: 페이지당 결과 수 (Default: 10)
 
-Response Body (200 OK):
+* **Response Body (200 OK)**:
 {
   "success": true,
   "data": {
@@ -250,17 +250,17 @@ Response Body (200 OK):
   }
 }
 
-5.10 회원 권한 변경 (REQ-USER-005)
-Endpoint: PATCH /api/v1/admin/users/{user_id}/role
+## 5.10 회원 권한 변경 (REQ-USER-005)
+* **Endpoin**t: PATCH /api/v1/admin/users/{user_id}/role
 
-Access: ADMIN
+* **Access**: ADMIN
 
-Request Body:
+* **Request Body**:
 {
   "role": "STAFF"
 }
 
-Response Body (200 OK):
+* **Response Body (200 OK)**:
 {
   "success": true,
   "message": "회원 권한이 성공적으로 변경되었습니다.",
