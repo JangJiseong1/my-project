@@ -12,3 +12,6 @@
 ```bash
 uv run alembic revision --autogenerate -m "create users and items tables"
 uv run alembic upgrade head
+
+## 4. DB 스키마 확인 (DB Viewer 스크린샷)
+![DB 스키마 화면](./images/db_screenshot.png)
