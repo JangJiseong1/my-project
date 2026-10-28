@@ -27,7 +27,7 @@
   }
 
  * **에러 응답 구조**:
-  {
+ {
   "success": false,
   "error": {
     "code": "ERROR_CODE",
