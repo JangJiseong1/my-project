@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import patient, user, prediction
+from app.routers import auth, patient, user, prediction
 
 # FastAPI 앱 인스턴스는 하나만 생성합니다.
 app = FastAPI(
